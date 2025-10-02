@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@hocuspocus/extension-logger':
+        specifier: ^3.2.4
+        version: 3.2.4(y-protocols@1.0.6(yjs@13.6.27))(yjs@13.6.27)
       '@hocuspocus/server':
         specifier: ^3.2.4
         version: 3.2.4(y-protocols@1.0.6(yjs@13.6.27))(yjs@13.6.27)
+      '@slate-yjs/core':
+        specifier: ^1.0.2
+        version: 1.0.2(slate@0.118.1)(yjs@13.6.27)
       dotenv:
         specifier: ^17.2.1
         version: 17.2.3
@@ -29,6 +35,9 @@ importers:
       mongoose:
         specifier: ^8.17.0
         version: 8.18.3
+      yjs:
+        specifier: ^13.6.27
+        version: 13.6.27
     devDependencies:
       '@babel/core':
         specifier: ^7.28.0
@@ -680,6 +689,9 @@ packages:
   '@hocuspocus/common@3.2.4':
     resolution: {integrity: sha512-EfnW+zu2VqLrtSU2LV4/4BGtSJvODZv2GKVGRFXKMvqwB87d7MGIBRnRi2Rz/QgX81GfWG5yHG1ad9oZE8DHLQ==}
 
+  '@hocuspocus/extension-logger@3.2.4':
+    resolution: {integrity: sha512-N/wsn6MmoqpJaKkDq17td1eiU0bExzyDi4SV0j6nxIPDVBBri13vRF2++atZk3xU4A8CBLW3agH6jk5nxRcBBQ==}
+
   '@hocuspocus/server@3.2.4':
     resolution: {integrity: sha512-YkDO2FZNnpVa3zLYlVgdfj85rCz2qycPyVNGUWlHkXgdkN9uIEWdWkDQwetfwiE5LoFatv02Rwr0fM6JfmPV+w==}
     peerDependencies:
@@ -759,6 +771,12 @@ packages:
 
   '@sinclair/typebox@0.34.41':
     resolution: {integrity: sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==}
+
+  '@slate-yjs/core@1.0.2':
+    resolution: {integrity: sha512-X0hLFJbQu9c1ItWBaNuEn0pqcXYK76KCp8C4Gvy/VaTQVMo1VgAb2WiiJ0Je/AyuIYEPPSTNVOcyrGHwgA7e6Q==}
+    peerDependencies:
+      slate: '>=0.70.0'
+      yjs: ^13.5.29
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -1487,6 +1505,9 @@ packages:
     resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
     engines: {node: '>= 4'}
 
+  immer@10.1.3:
+    resolution: {integrity: sha512-tmjF/k8QDKydUlm3mZU+tjM6zeq9/fFpPqH9SzWmBnVVKsPBg/V66qsMwb3/Bo90cgUN+ghdVBess+hPsxUyRw==}
+
   import-fresh@3.3.1:
     resolution: {integrity: sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==}
     engines: {node: '>=6'}
@@ -2174,6 +2195,9 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
 
+  slate@0.118.1:
+    resolution: {integrity: sha512-6H1DNgnSwAFhq/pIgf+tLvjNzH912M5XrKKhP9Frmbds2zFXdSJ6L/uFNyVKxQIkPzGWPD0m+wdDfmEuGFH5Tg==}
+
   sparse-bitfield@3.0.3:
     resolution: {integrity: sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==}
 
@@ -2238,6 +2262,9 @@ packages:
   test-exclude@6.0.0:
     resolution: {integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==}
     engines: {node: '>=8'}
+
+  tiny-warning@1.0.3:
+    resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
 
   tmpl@1.0.5:
     resolution: {integrity: sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==}
@@ -3196,6 +3223,15 @@ snapshots:
     dependencies:
       lib0: 0.2.114
 
+  '@hocuspocus/extension-logger@3.2.4(y-protocols@1.0.6(yjs@13.6.27))(yjs@13.6.27)':
+    dependencies:
+      '@hocuspocus/server': 3.2.4(y-protocols@1.0.6(yjs@13.6.27))(yjs@13.6.27)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+      - y-protocols
+      - yjs
+
   '@hocuspocus/server@3.2.4(y-protocols@1.0.6(yjs@13.6.27))(yjs@13.6.27)':
     dependencies:
       '@hocuspocus/common': 3.2.4
@@ -3306,6 +3342,12 @@ snapshots:
       fastq: 1.19.1
 
   '@sinclair/typebox@0.34.41': {}
+
+  '@slate-yjs/core@1.0.2(slate@0.118.1)(yjs@13.6.27)':
+    dependencies:
+      slate: 0.118.1
+      y-protocols: 1.0.6(yjs@13.6.27)
+      yjs: 13.6.27
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -4283,6 +4325,8 @@ snapshots:
 
   ignore@7.0.5: {}
 
+  immer@10.1.3: {}
+
   import-fresh@3.3.1:
     dependencies:
       parent-module: 1.0.1
@@ -5023,6 +5067,11 @@ snapshots:
 
   slash@3.0.0: {}
 
+  slate@0.118.1:
+    dependencies:
+      immer: 10.1.3
+      tiny-warning: 1.0.3
+
   sparse-bitfield@3.0.3:
     dependencies:
       memory-pager: 1.5.0
@@ -5109,6 +5158,8 @@ snapshots:
       '@istanbuljs/schema': 0.1.3
       glob: 7.2.3
       minimatch: 3.1.2
+
+  tiny-warning@1.0.3: {}
 
   tmpl@1.0.5: {}
 

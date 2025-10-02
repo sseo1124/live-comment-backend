@@ -15,13 +15,16 @@
   },
   "keywords": [],
   "dependencies": {
+    "@hocuspocus/extension-logger": "^3.2.4",
     "@hocuspocus/server": "^3.2.4",
+    "@slate-yjs/core": "^1.0.2",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-ws": "^5.0.2",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.17.0"
+    "mongoose": "^8.17.0",
+    "yjs": "^13.6.27"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
