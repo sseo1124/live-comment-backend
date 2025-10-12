@@ -1,14 +1,17 @@
 import mongoose from "mongoose";
-import { VALIDATION } from "../config/constants.js";
 
 const UserSchema = new mongoose.Schema(
   {
-    phone: {
+    email: {
       type: String,
-      match: VALIDATION.PHONE.PATTERN,
-      required: true,
       unique: true,
+      required: true,
+      lowercase: true,
+      trim: true,
+      index: true,
     },
+    passwordHash: { type: String, required: true, minlength: 8 },
+    name: String,
   },
   { timestamps: true }
 );
