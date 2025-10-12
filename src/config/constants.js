@@ -3,3 +3,7 @@ export const VALIDATION = {
     PATTERN: /^\+82\d{10}$/,
   },
 };
+
+export const AUTHENTICATION = {
+  SALT_WORK_FACTOR: 10,
+};
