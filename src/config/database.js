@@ -3,7 +3,7 @@ import config from "./env.js";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(config.mongoUrl);
+    await mongoose.connect(config.mongoUrl, { dbName: "liveComment" });
     console.log("MongoDB 연결 성공");
 
     mongoose.connection.on("error", (err) => {
