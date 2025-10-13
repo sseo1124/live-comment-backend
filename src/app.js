@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import passport from "passport";
 
 import configPassport from "./config/passport.js";
@@ -8,6 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors()); // 향후 정해진 프론트 서버의 origin 등록
 
 configPassport();
 app.use(passport.initialize());
