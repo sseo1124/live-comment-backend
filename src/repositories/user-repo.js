@@ -10,5 +10,5 @@ export async function findOneUserbyId(userId) {
 }
 
 export async function findOneUserbyEmail(userEmail) {
-  return await User.findOne({ userEmail });
+  return await User.findOne({ email: userEmail });
 }
