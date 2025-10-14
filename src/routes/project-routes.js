@@ -1,8 +1,17 @@
 import express from "express";
 import passport from "passport";
-import { handleCreateProject } from "../controllers/project-controller.js";
+import {
+  handleCreateProject,
+  handleGetProjects,
+} from "../controllers/project-controller.js";
 
 const router = express.Router();
+
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  handleGetProjects
+);
 
 router.post(
   "/",
