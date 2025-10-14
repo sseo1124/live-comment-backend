@@ -2,6 +2,8 @@ import { MEMBERSHIP } from "../config/constants.js";
 import {
   assignProjectMemebership,
   createProject,
+  getMembershipsByUserId,
+  getProjectsbyIds,
 } from "../repositories/project-repo.js";
 
 export async function handleCreateProject(req, res, next) {
@@ -24,4 +26,19 @@ export async function handleCreateProject(req, res, next) {
       role: MEMBERSHIP.OWNER,
     },
   });
+}
+
+export async function handleGetProjects(req, res, next) {
+  const userId = req.user._id;
+
+  const memberships = await getMembershipsByUserId(userId);
+
+  if (memberships.length === 0) {
+    return res.json({ projects: [] });
+  }
+
+  const projectIds = memberships.map((membership) => membership.projectId);
+  const projects = await getProjectsbyIds(projectIds);
+
+  return res.json({ projects });
 }
