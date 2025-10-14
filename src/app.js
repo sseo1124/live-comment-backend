@@ -1,9 +1,11 @@
 import express from "express";
 import cors from "cors";
-import passport from "passport";
 
+import passport from "passport";
 import configPassport from "./config/passport.js";
+
 import authRoutes from "./routes/auth-routes.js";
+import projectRoutes from "./routes/project-routes.js";
 
 const app = express();
 
@@ -15,6 +17,7 @@ configPassport();
 app.use(passport.initialize());
 
 app.use("/auth", authRoutes);
+app.use("/projects", projectRoutes);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "아무것도 없습니다." });

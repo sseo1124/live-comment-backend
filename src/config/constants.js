@@ -13,3 +13,8 @@ export const ERROR_MESSAGE = {
 export const AUTHENTICATION = {
   SALT_WORK_FACTOR: 10,
 };
+
+export const MEMBERSHIP = {
+  OWNER: "owner",
+  MEMBER: "member",
+};
