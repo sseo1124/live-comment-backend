@@ -10,7 +10,7 @@ export async function siginup(req, res, next) {
     const newUser = await createUser({ email, password, name });
 
     return res.status(201).json({
-      user: { _id: newUser._id, email: newUser.email, name: newUser.name },
+      user: { id: newUser._id, email: newUser.email, name: newUser.name },
     });
   } catch {
     next(createHttpError(400, ERROR_MESSAGE.REGISTER_ERROR));
@@ -37,7 +37,7 @@ export async function login(req, res, next) {
   return res.json({
     accessToken,
     user: {
-      _id: user._id,
+      id: user._id,
       email: user.email,
       name: user.name,
     },
@@ -46,7 +46,7 @@ export async function login(req, res, next) {
 
 function generateAccessToken(user) {
   const payload = {
-    _id: user._id,
+    id: user._id,
     email: user.email,
     name: user.name,
   };
