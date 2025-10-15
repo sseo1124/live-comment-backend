@@ -3,20 +3,16 @@ import passport from "passport";
 import {
   handleCreateProject,
   handleGetProjects,
+  handleUpsertRoom,
 } from "../controllers/project-controller.js";
 
 const router = express.Router();
+const authenticate = passport.authenticate("jwt", { session: false });
 
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  handleGetProjects
-);
+router.get("/", authenticate, handleGetProjects);
 
-router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  handleCreateProject
-);
+router.post("/", authenticate, handleCreateProject);
+
+router.post("/:projectId/rooms", authenticate, handleUpsertRoom);
 
 export default router;
