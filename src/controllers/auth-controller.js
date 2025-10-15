@@ -37,7 +37,7 @@ export async function login(req, res, next) {
   return res.json({
     accessToken,
     user: {
-      id: user._id,
+      _id: user._id,
       email: user.email,
       name: user.name,
     },
@@ -46,7 +46,7 @@ export async function login(req, res, next) {
 
 function generateAccessToken(user) {
   const payload = {
-    id: user._id,
+    _id: user._id,
     email: user.email,
     name: user.name,
   };
