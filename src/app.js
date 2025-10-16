@@ -7,6 +7,9 @@ import { Server } from "socket.io";
 import passport from "passport";
 import configPassport from "./config/passport.js";
 
+import Room from "./model/Room.js";
+import ProjectMember from "./model/ProjectMembership.js";
+
 import authRoutes from "./routes/auth-routes.js";
 import projectRoutes from "./routes/project-routes.js";
 
@@ -39,12 +42,31 @@ io.engine.use((req, res, next) => {
 });
 
 io.on("connection", (socket) => {
-  const req = socket.request;
+  socket.on("join_room", async ({ roomId }, ack) => {
+    try {
+      if (!roomId) return ack?.({ ok: false, code: "BAD_REQUEST" });
 
-  socket.join(`user:${req.user._id}`);
+      const room = await Room.findById(roomId).select("_id projectId").lean();
+      if (!room) return ack?.({ ok: false, code: "ROOM_NOT_FOUND" });
 
-  socket.on("whoami", (cb) => {
-    cb(req.user.name);
+      const isMember = await ProjectMember.findOne({
+        projectId: room.projectId,
+        userId: socket.request.user._id,
+      })
+        .select("_id")
+        .lean();
+
+      if (!isMember) return ack?.({ ok: false, code: "FORBIDDEN" });
+
+      const roomName = `room:${roomId}`;
+      await socket.join(roomName);
+      socket.data.currentRoomId = roomId;
+
+      socket.emit("room_joined", { roomId });
+      ack?.({ ok: true, roomId });
+    } catch (e) {
+      ack?.({ ok: false, code: "SERVER_ERROR", message: e.message });
+    }
   });
 });
 
