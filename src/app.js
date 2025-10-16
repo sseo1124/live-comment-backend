@@ -9,6 +9,7 @@ import configPassport from "./config/passport.js";
 
 import Room from "./model/Room.js";
 import ProjectMember from "./model/ProjectMembership.js";
+import Thread from "./model/Thread.js";
 
 import authRoutes from "./routes/auth-routes.js";
 import projectRoutes from "./routes/project-routes.js";
@@ -64,6 +65,50 @@ io.on("connection", (socket) => {
 
       socket.emit("room_joined", { roomId });
       ack?.({ ok: true, roomId });
+    } catch (e) {
+      ack?.({ ok: false, code: "SERVER_ERROR", message: e.message });
+    }
+  });
+
+  socket.on("thread:create", async (payload, ack) => {
+    try {
+      const { roomId, content, tempId } = payload || {};
+      if (!roomId || !content || !String(content).trim()) {
+        return ack?.({ ok: false, code: "BAD_REQUEST" });
+      }
+
+      const room = await Room.findById(roomId).select("_id projectId").lean();
+      if (!room) return ack?.({ ok: false, code: "ROOM_NOT_FOUND" });
+
+      const m = await ProjectMember.findOne({
+        projectId: room.projectId,
+        userId: socket.request.user._id,
+      })
+        .select("_id")
+        .lean();
+      if (!m) return ack?.({ ok: false, code: "FORBIDDEN" });
+
+      const t = await Thread.create({
+        projectId: room.projectId,
+        roomId,
+        content: String(content).trim(),
+        createdBy: socket.request.user._id,
+      });
+
+      const out = {
+        _id: t._id,
+        content: t.content,
+        resolved: t.resolved,
+        createdAt: t.createdAt,
+        createdBy: t.createdBy,
+        updatedAt: t.updatedAt,
+        __v: t.__v,
+      };
+
+      const roomName = `room:${roomId}`;
+      io.to(roomName).emit("thread:created", out);
+
+      ack?.({ ok: true, tempId, threadId: String(t._id) });
     } catch (e) {
       ack?.({ ok: false, code: "SERVER_ERROR", message: e.message });
     }
